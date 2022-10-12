@@ -1,0 +1,68 @@
+<%- contentFor('layoutButton') %>
+
+<div class="btn-group dropstart me-2 ">
+    <button type="button" class="btn filter-newsfeed text-dark-grey bg-transparent custom-tooltip border-0" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-filter"></i>
+        <span class="tooltiptext">Filter NewsFeed</span>
+    </button>
+
+    <!-- newsfeed filter -->
+        <ul class="dropdown-menu px-1">
+                <form method="get" id="searchNewsFeedForm" action="/">
+                    <div class="d-flex my-2">
+                        <div class="flex-fill">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">From Anyone</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" value="all" type="radio" name="pf" id="flexSwitchCheckChecked" <%=locals.pf!='follower' && 'checked' %> >
+                        </div>
+                    </div>
+                </li>
+                    <div class="d-flex my-2">
+                        <div class="flex-fill">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">From Following</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" value="follower" type="radio" name="pf" id="flexSwitchCheckChecked" <%=locals.pf =='follower' && 'checked' %>>
+                        </div>
+                
+                    </div>
+                </li>
+            </form>
+        </ul>
+
+  </div>
+
+
+
+<%- contentFor('body') %>
+
+<div class=" thick-border me-1 ">
+  
+
+    <!-- tweet  create form -->
+    <%- include('./components/postForm',
+    {
+        profilePic:user.profilePic
+    }
+    ) %> 
+
+    
+    
+</div>
+<div class="posts-row pt-2 ">
+    <!-- posts list here -->
+<% if (posts.length===0) { %>
+    <h5 class="text-muted my-2 ps-2">Nothing to show! Make a tweet!</h5>
+<% }else {%>
+    <% posts.forEach(post => { %>
+        <%-include('./components/_post',{post}) %> 
+    <% }) %>
+   
+<% } %>     
+
+</div>
+<%- include('./layout/_sidebar') %> 
+
+
+

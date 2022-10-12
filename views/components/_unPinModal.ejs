@@ -1,0 +1,24 @@
+<!-- Modal -->
+<div class="modal fade" id="UnPinnPostModal" tabindex="-1" aria-labelledby="unPinnPostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-extra-light ">
+          <h5 class="modal-title" id="pinnPostModalLabel">Unpin Tweet from your profile?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p class="p-2 text-warnin">
+                This will no longer appear automatically at the top of your profile
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-extra-light" data-bs-dismiss="modal">Cancel</button>
+          <form action="/posts/pinn?_method=PATCH" method="post">
+                <input type="hidden" name="postId" id="unPinnPostIdInput">
+                <input type="hidden" name="pinned" value="false">
+              <button type="submit" class="btn btn-warning ">Unpin</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+<!-- Modal -->
+<div class="modal fade" id="retweetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog   modal-fullscreen-sm-down modal-dialog-centered  modal-dialog-scrollable animate__animated animate__zoomIn animate__faster">
+    <form action="/posts/retweet" method="post" class="modal-content"  id="retweetModalForm">
+      <div class="">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a Quote</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex border-bottom">
+            <div class="img-wrapper">
+              <img src="<%=user.profilePic%>" referrerpolicy="no-referrer" class="rounded-circle" width="60" height="60" alt="<%=user.username%> ">
+          </div>
+            <div class="flex-fill">
+              <textarea required minlength="5" class="retweet-textarea" name="quote" id="quote"
+            placeholder="start typing...!" autofocus></textarea>
+            </div>
+          </div>
+          
+            <input type="hidden" name="postId" id="retweetTargetPostId">
+
+          <div class=" post-modal-wrapper ps-1 my-1" style="min-height:100px ;">
+          </div>
+
+        </div>
+        <div class="modal-footer pb-1">
+          <div class="clearFix">
+            <button type="submit"
+              class="btn send-retweet-req-btn  rounded-pill btn-primary text-light float-end">Tweet</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

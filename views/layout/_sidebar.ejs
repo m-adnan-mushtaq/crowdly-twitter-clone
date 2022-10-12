@@ -1,0 +1,41 @@
+<%- contentFor('sidebar') %>
+<div class="wrapper my-3 mx-2 animate__animated animate__fadeInDown ">
+
+    <% if (locals.title !='Explore') { %>
+      <%-include('../components/_search') %> 
+     
+    <% } %>
+  
+
+    <div class="randomUsers rounded-large my-3 animate__animated animate__zoomIn animate__delay-1s" style="background-color:#f9f9f9 ;">
+        <h4 class="text-black m-2">People You May Know!</h4>
+        <% if (randomUsers.length==0) { %>
+            <p class="p-2 text-dark-grey">No Users Found!</p>
+        <% } else {%>
+            <% randomUsers.forEach(userDoc => { %>
+                <a href="/user/<%=userDoc.username%>" class="text-decoration-none text-dark-grey">
+                    <div class="d-flex align-items-center p-2 my-1 user-sample">
+                        <div class="img-wrapper">
+                            <img width="50" height="50" src="<%=userDoc.profilePic%>" alt="user" class="rounded-circle">
+                        </div>
+                        
+                    <div class="ms-2 flex-fill">
+                        <p class="mb-0"><%=userDoc.name%></p>
+                        <small> @<%=userDoc.username%></small>
+                    </div>
+                    <div class="profile-page-actions">
+                        <button class="btn btn-black">View</button>
+                    </div>
+                </div>
+                </a>
+
+            <% }) %>
+            <div class="user-sample py-3">
+                <a href="/user/connect" class="p-2 link link-primary text-decoration-none">View More</a>
+
+            </div>
+        <% } %> 
+    </div>
+
+   
+</div>

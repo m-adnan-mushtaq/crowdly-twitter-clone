@@ -1,0 +1,21 @@
+
+
+
+
+// overide default primary color
+$primary:#1DA1F2;
+// customize theme color
+$add-theme-colors:(
+    "black":#14171A,
+    "dark-grey":#657786,
+    "light-grey":#AAB8C2,
+    "extra-light":#F5F8FA
+);
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+// add into bootstrap theme colors
+$theme-colors:map-merge($add-theme-colors, $theme-colors );
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "customUtli";

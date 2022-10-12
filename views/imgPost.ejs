@@ -1,0 +1,47 @@
+<div class="container-fluid p-0">
+    <div class="row g-0" style="height:100vh;">
+        <div class="col-md-7 m-0 right-col">
+            <div class="animate__animated animate__fadeInLeft   ">
+                <div id="carouselExampleControls" class="carousel slide" data-interval="false"
+                
+                >
+                    <div class="carousel-inner h-100">
+                      <% post.images.forEach(imgDoc => { %>
+                        <div class="carousel-item  "  >
+                          <div class="carousel-image-box">
+                               <img loading="lazy" src="<%=imgDoc.imgUrl%>" referrerpolicy="no-referrer" alt="<%=imgDoc._id%>">
+                          </div>
+                        </div>
+                      <% }) %>
+                        
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-5 middle-col">
+            <div class="animate__animated animate__slideInUp">
+                <%- include('./components/post',
+                 {post
+                  }
+                ) %> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- script for showing by default first img -->
+<!-- modals -->
+<%- include('./partials/_allModals') %> 
+<script >
+  document.querySelectorAll('.carousel-item')[0].classList.add('active')
+</script>
+<script src="/js/posts.js"></script>

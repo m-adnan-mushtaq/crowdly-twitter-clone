@@ -1,0 +1,77 @@
+<section class="profile-img-section">
+    <div class="cover-img upload-box">
+        <% if (profileUser.coverPic) { %>
+            <img referrerpolicy="no-referrer" class="" src="<%=profileUser.coverPic%>" loading="lazy">
+        <% } %>
+        <input type="file" name="" style="display:none;" id="coverImgInput">
+        <% if (user.id == profileUser.id) { %>
+         
+            <i data-user-name=<%=user.username%> class="fa fa-camera " role="button" id="coverImgUploadBtn"></i>
+        <% } %>
+</div>
+    <div class="profile-img upload-box">
+        <img  referrerpolicy="no-referrer" loading="lazy"  src="<%=profileUser.profilePic%>" alt="<%=profileUser.username%>" class="">
+        <input type="file" name="" style="display:none;" id="profileImgInput">
+        <% if (user.id == profileUser.id) { %>
+         
+            <i data-user-name=<%=user.username%> class="fa fa-camera" role="button" id="profileImgUploadBtn"></i>
+        <% } %>
+    </div>
+</section>
+    <div class="profile-page-actions">
+        <span class="opacity-0">lorem jsfkskl</span>
+        <% if (user.id!=profileUser.id) { %>
+            <a href="/messages/<%=profileUser._id%>"><i class="fa fa-envelope"></i></a>
+            <%-include('./components/followBtn',{user,profileUser}) %>
+        <% } %>
+    
+    </div>
+    <section class="user-details-section text-dark-grey ps-2">
+        <div>
+            <h5 class="mt-3"><%=profileUser.name%></h5>
+            <p class="mb-0">@<%=profileUser.username%></p>
+            <p class="mb-0 follow-wrapper">
+    
+                <a href="/user/<%=profileUser.username%>/followers" class="link-primary text-decoration-none text-dark-grey"> <span class="followers-count"><%=profileUser.followers.length%></span> Followers </a>
+                <a href="/user/<%=profileUser.username%>/following" class="link-primary text-decoration-none text-dark-grey"> <span class="following-count"><%=profileUser.following.length  %> </span> Following  </a>
+            </p>
+        </div>
+    
+    </section>
+    <section class="tabs-section border-bottom">
+        <a class="tab  <%=(activeTab=='tweets')?'active':'' %>  " href="/user/<%=profileUser.username%>">
+            Tweets
+        </a>
+        <a class="tab <%=(activeTab=='replies')?'active':'' %> " href="/user/<%=profileUser.username%>/replies">
+            Replies
+        </a>
+        <a class="tab <%=(activeTab=='media')?'active':'' %> " href="/user/<%=profileUser.username%>/media">
+            Media
+        </a>
+        <a class="tab <%=(activeTab=='likes')?'active':'' %> " href="/user/<%=profileUser.username%>/likes">
+            Likes
+        </a>
+    </section>
+    <section class="posts-row mt-4">
+        <% if (posts.length===0) { %>
+            <h5 class="text-muted my-2 ps-2">Nothing to show! :)</h5>
+        <% }else {%>
+            <% if (locals.pinnedPost) { %>
+                <p class="text-black ms-2 text-dark-grey">
+                    <i class="fa fa-thumb-tack"></i> Pinned Tweet
+                </p>
+                <%-include('./components/_post',{post:pinnedPost}) %>
+            <% } %>
+            <% posts.forEach(post => { %>
+                <%-include('./components/_post',{post}) %>
+            <% }) %>
+    
+        <% } %>
+    
+    </section>
+
+<%- include('./layout/_sidebar') %>     
+
+<%- contentFor('extraScripts') %>
+<!-- cropper -->
+<script src="/js/cropper.min.js"></script>

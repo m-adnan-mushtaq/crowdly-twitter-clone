@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered animate__animated animate__shakeX animate__fast animate_rotateOut">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-light">
+          <p class="modal-title fw-bold" id="exampleModalLabel">Are you sure, You want to delete permanently?</p>
+        </div>
+        <div class="modal-body">
+          <p class="text-danger my-2">
+             All Retweeted Posts related to this tweet will be removed!
+            This is a one way action, so make sure to read this to move further!
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-extra-light" data-bs-dismiss="modal">Cancel</button>
+           <form action="/posts/delete?_method=DELETE" method="post" id="deletePostForm">
+           <input type="hidden" name="postId" id="deletPostIdInput">
+          <button type="submit" class="btn btn-danger">Confirm</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>

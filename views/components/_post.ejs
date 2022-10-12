@@ -1,0 +1,147 @@
+<!-- post parts -->
+<!-- retweet data if exists -->
+<% if (post.retweetData != null) { %>
+    <div class="post-container post-border">
+        <figure class="">
+            <p class="ms-1 text-dark-grey text-italic"><em><i class="fa fa-retweet"></i> Retweeted by <a class="link-primary text-decoration-none" href="/user/<%=post.author.username%>"> @<%=post.author.username%></a></em></p>
+            <blockquote class="blockquote">
+                <% if (post.retweetQuote) { %>
+                <div class="align-middle d-flex mx-1 align-items-center">
+                    <img src="<%=post.author.profilePic%>" loading="lazy" referrerpolicy="no-referrer" width="40" height="40" alt="<%=post.author.username%>" class="rounded-circle">
+                    <p class="text-black my-1 ps-1 text-dark-grey small"><%=post.retweetQuote%> </p> 
+            
+                    </div>
+                    <% } %>
+                
+            </blockquote>
+          </figure>
+       
+          
+          <div class="ms-2">
+            <% if (post.retweetData.replyTo) { %>
+                <p class="text-black">
+                    Replying to <a class="link-primary text-decoration-none" href="/user/<%=post.retweetData.replyTo.author.username%>">@<%=post.retweetData.replyTo.author.username%></a></a>
+                </p>
+            <% } %>
+
+        </div>   
+<div class="post-wrapper p-2 ms-3" data-post-id="<%=post._id%>" data-like-post-id="<%=post.retweetData._id%>">
+        <div class="post-header d-flex align-items-center mb-1">
+        <div class="img-wrapper d-flex flex-fill align-items-center">
+            <div>
+                <a href="/user/<%=post.retweetData.author.username%>">
+                    <img referrerpolicy="no-referrer" loading="lazy" src="<%=post.retweetData.author.profilePic%>" class="img-rounded rounded-circle align-middle" width="40" height="40" alt="profile pic">
+                </a>
+            </div>
+            <div class="ms-2">
+                <div class="mb-0">
+                    <a href="/user/<%=post.retweetData.author.username%>" class="text-dark-grey ms-1 mb-0 fw-bold"><%=post.retweetData.author.name%></a>
+                </div>
+                <small class="text-muted">@<%=post.retweetData.author.username%></small>
+            </div>
+        </div>
+        <small class="text-muted">
+            <%=post.retweetData.uploadedAt%>
+        </small>
+        <% if (post.author.id==user.id) { %> 
+            <%-include('../partials/_post_options',{pinned:String(post.pinned)}) %> 
+        <% } %>
+        </div>
+        <a  <%=post.retweetData?.images.length && 'data-no-swup'  %> href="/posts/<%=post.retweetData._id%>" class="text-decoration-none  post-box ">
+            <div class="post-content  p-1 py-2">
+                <div class="content text-black">
+                    <p><%=post.retweetData.content%> </p>
+                </div>
+                <!-- show images of post if any -->
+                <% if (post.retweetData.images.length) { %>
+                <div class="post-image-box">
+                    <% post.retweetData.images.forEach(imgDoc => { %>
+                            <div class="post-image-wrapper">
+    
+                                <img loading="lazy" src="<%=imgDoc.imgUrl%>" alt="<%=post.retweetData.author.name%>">
+                            </div>
+                            <% }) %>
+                        </div>
+                <% } %>
+    
+    
+            </div>
+        </a>
+
+        <!-- post actions -->
+        <div class="post-footer  ">
+            <%- include('../partials/_post_actions', {post:post.retweetData}) %> 
+        </div>
+    </div>
+</div>
+<% } else {%>
+    <div class="post-container post-border mb-1">
+        <div class="ms-2">
+            <% if (post.replyTo) { %>
+                <p class="text-dark-grey">
+                    <i>
+
+                        Replying to <a class="link-primary text-decoration-none" href="#">@<%=post.replyTo.author.username%></a></a>
+                    </i>
+                </p>
+            <% } %>
+
+        </div>    
+    <div class="post-wrapper p-2 " data-post-id="<%=post._id%>">
+            
+        
+        <div class="post-header d-flex align-items-center mb-1">
+        <div class="img-wrapper d-flex flex-fill align-items-center">
+            <div>
+                <a href="/user/<%=post.author.username%>">
+                    <img referrerpolicy="no-referrer" loading="lazy" src="<%=post.author.profilePic%>" class="img-rounded rounded-circle align-middle" width="50" height="50" alt="profile pic">
+                </a>
+            </div>
+            <div class="ms-2">
+                <div class="mb-0">
+
+                    <a href="/user/<%=post.author.username%>" class="text-dark-grey ms-1 mb-0 fw-bold"><%=post.author.name%></a>
+                </div>
+                <small class="text-muted mt-0">@<%=post.author.username%></small>
+            </div>
+        </div>
+        <small class="text-muted">
+            <%=post.uploadedAt%>
+        </small>
+        <div>
+            <!-- is user is post author -->
+            <% if (post.author.id==user.id) { %> 
+                <%-include('../partials/_post_options',{pinned:String(post.pinned)}) %> 
+            <% } %>
+        </div>
+        </div>
+        
+        <a  <%=post.images?.length && 'data-no-swup'%> href="/posts/<%=post._id%>" class="text-decoration-none text-dark-grey post-box ">
+            <div class="post-content  p-1 py-2">
+                <!-- if post is the reply  post -->
+           
+                <div class="content">
+                    <p><%=post.content%> </p>
+                </div>
+                <!-- show images of post if any -->
+                <% if (post.images.length) { %>
+                <div class="post-image-box">
+                    <% post.images.forEach(imgDoc => { %>
+                            <div class="post-image-wrapper">
+    
+                                <img loading="lazy" src="<%=imgDoc.imgUrl%>" alt="<%=post.author.name%>">
+                            </div>
+                            <% }) %>
+                        </div>
+                <% } %>
+    
+    
+            </div>
+        </a>
+        <div class="post-footer ">
+            <%- include('../partials/_post_actions', {post}) %> 
+        </div>
+    </div>
+</div>
+<% } %> 
+

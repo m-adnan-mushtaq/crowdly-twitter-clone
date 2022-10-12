@@ -1,0 +1,27 @@
+<section class="tabs-section border-bottom">
+    <a class="tab  <%=(activeTab=='followers')?'active':'' %>  " href="/user/<%=profileUser.username%>/followers">
+        Followers
+    </a>
+    <a class="tab <%=(activeTab=='following')?'active':'' %> " href="/user/<%=profileUser.username%>/following">
+        Following
+    </a>
+</section>
+
+<!-- render followers -->
+<% if (activeTab=='followers') { %>
+    <% if (profileUser.followers.length ==0) { %>
+        <p class="m-2 fw-bold text-dark-grey"><%= profileUser.name %> has No followers Yet! :)</p>
+    <% } else {%>
+        <% profileUser.followers.forEach( followerDoc => { %>
+            <%-include('./components/user',{profileUser,fuser:followerDoc.follower}) %> 
+        <% }) %>
+    <% } %> 
+<% } else {%>
+    <% if (profileUser.following.length ==0) { %>
+        <p class="m-2 fw-bold text-dark-grey"><%= profileUser.name %> is following No body!</p>
+    <% } else {%>
+        <% profileUser.following.forEach( followingDoc => { %>
+            <%-include('./components/user',{profileUser,fuser:followingDoc.followee}) %> 
+        <% }) %>
+    <% } %> 
+<% } %>     

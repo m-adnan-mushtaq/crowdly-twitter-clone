@@ -1,0 +1,73 @@
+<%- contentFor('layoutButton') %>
+<div class="menu-icon-link custom-tooltip me-2" data-bs-toggle="modal" data-bs-target="#messageModal">
+    <img src="/assets/new-message.svg" alt="create message" width="30" height="30">
+    <span class="tooltiptext">Message</span>
+</div>
+
+<%- contentFor('body') %>
+
+<% if (chats.length) { %>
+
+    <% chats.forEach((chat  ) => { %>
+        <a href="/messages/<%=chat._id%>" class=
+            "chat-wrapper 
+            notification
+            <% if (chat.latestMessage) { %>
+                    <% if (!chat.latestMessage.readBy.includes(user.id)) { %>
+                        <%= 'unread' %> 
+                    <% } %>
+            <% } %>
+             
+            animate__animated animate__faster animate__fadeIn  
+            d-flex border-bottom text-black text-decoration-none
+            ">
+            <div class="chat-img me-1">
+                <%- include('./components/messages/createChatIcon',{users:chat.users,user,limit:2}) %> 
+                
+            </div>
+            <div class="chat-details flex-fill">
+                <p class="fw-bold  mb-1 chat-users-list">
+                    <% if (chat.title) { %>
+                        <%= chat.title %> 
+                    <% } else { %>
+                        <%= chat.users.reduce((prev,current)=>(prev.username || prev)+', '+ current.username) %> 
+                        <% } %> 
+                </p>
+                <p class="small text-dark-grey chat-users-list">
+                    <% if (chat.latestMessage) { %>
+                       <%= chat.latestMessage.sender.username %>  : <%=chat.latestMessage.content %> 
+                    <% } else {%>
+                        No Messages Yet :)
+                    <% } %> 
+                </p>
+            </div>
+        </a>
+    <% }) %>
+
+<% }else { %>
+    <div class="mt-5 ps-4">
+        <h1 class="fw-bold">Welcome to your inbox!</h1>
+        <p class="text-dark-grey">
+            Drop a line, share Tweets and more with private conversations between you and others on Twitter. 
+        </p>
+        <button data-bs-toggle="modal" data-bs-target="#messageModal"  class="btn btn-primary btn-lg px-4 fw-bold rounded-pill text-light">Write Message</button>
+    </div>
+<% } %>     
+
+
+
+
+<!-- sidebar -->
+<%- contentFor('sidebar') %>
+<div class="d-flex h-75 justify-content-center align-items-start flex-column px-3">
+ <h2 class="fw-bold">Select a message</h2>
+ <p class="text-dark-grey pe-4">
+    Choose from your existing conversations, start a new one, or just keep swimming.
+ </p>
+ <button  data-bs-toggle="modal" data-bs-target="#messageModal" class="btn btn-primary btn-lg px-4 fw-bold rounded-pill text-light">New Message</button>
+
+</div>
+
+
+<%- contentFor('extraScripts') %>
+<script  src="/js/message.js"></script>

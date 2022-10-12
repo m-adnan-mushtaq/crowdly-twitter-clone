@@ -1,0 +1,21 @@
+<%-include('./components/_search') %> 
+<section class="tabs-section border-bottom">
+    <a class="tab  <%=(activeTab=='latest')?'active':'' %>  " href="/search?q=<%=locals.query%>">
+        Latest
+    </a>
+    <a class="tab  <%=(activeTab=='people')?'active':'' %>  " href="/search/people?q=<%=locals.query%>">
+        People
+    </a>
+    <a class="tab  <%=(activeTab=='photos')?'active':'' %>  " href="/search?q=<%=locals.query%>&type=media">
+        Photos
+    </a>
+</section>
+
+
+<% if (allUsers.length==0) { %>
+    <h5 class="p-2 text-dark-grey my-2">No User found! :)</h5>
+<% } else {%>
+    <% allUsers.forEach(userDoc => { %>
+     <%-include('./components/user',{fuser:userDoc}) %> 
+    <% }) %>
+<% } %> 

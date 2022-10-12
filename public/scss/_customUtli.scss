@@ -1,0 +1,82 @@
+.t-left{
+    text-align: left !important;
+}
+.main-title{
+    font-family: 'Modern No.20';
+}
+
+
+// some colors
+$dark-grey:#657786;
+$extra-light:#F5F8FA;
+$light-grey:#AAB8C2;
+
+// INPUT-CSS
+.input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+}
+.ic1 {
+    margin-top: 30px;
+}
+.ic2 {
+    margin-top: 30px;
+}
+.input {
+    background-color:#fff;
+    border-radius: 0px;
+    border: 1px solid  $light-grey;
+    box-sizing: border-box;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+.cut {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: clamp(55px, 65px ,77px);
+}
+
+.cut-lg {
+    min-width: 77px;
+}
+.input:focus~.cut,
+.input:not(:placeholder-shown)~.cut {
+    transform: translateY(8px);
+}
+.placeholder {
+    color:$dark-grey;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    background: none;
+    opacity: 1;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+}
+.input:focus~.placeholder,
+.input:not(:placeholder-shown)~.placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+.input:not(:placeholder-shown)~.placeholder {
+    color: $dark-grey;
+}
+.input:focus~.placeholder {
+    color: $primary;
+}
+.input:focus{
+    border-color: $primary;
+    background-color: $extra-light;
+}

@@ -1,0 +1,20 @@
+<!-- post create form -->
+<div class="post-create-wrapper d-flex ps-2  py-2">
+    <div class="img-wrapper">
+        <img src="<%=profilePic%>" referrerpolicy="no-referrer" class="rounded-circle" width="60" height="60" alt="<%=user.username%> ">
+    </div>
+    <div class="post-form flex-fill" >
+        <form action="/posts" method="post">
+            <textarea required minlength="10" maxlength="240" name="content" id="content" class="tweet-area"  placeholder="What's Happening!"><%=locals.content%></textarea>
+            <div class="border-top pt-1">
+                <div class="" >
+                    <!-- filepond -->
+                    <input class="p-0 m-0" type="file" name="post-images" id="post-images" multiple max="3">
+                </div>
+                <div class="clearFix">
+                    <button class="btn  rounded-pill btn-primary text-light float-end">Tweet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>

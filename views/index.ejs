@@ -1,0 +1,70 @@
+<%- include('./partials/auth/_ui') %> 
+          <h1
+            class="main-title display-3 fw-bold text-primary animate__animated animate__rotateInDownRight animate__faster animate__delay-1s">
+            Join Crowdly Today</h1>
+          <h5 class="">Explore what happening now!</h5>
+          <div class="mt-5 w-100">
+            <a href="/user/google" class="btn-scale sm-btns btn btn-danger rounded-pill w-50 py-2">
+              <i class="fa fa-google-plus" aria-hidden="true"></i>&nbsp;
+              Continue with Google</a>
+            <p class="mb-2">or</p>
+            <button class="btn-scale btn text-light sm-btns btn-primary  modal-show-btn rounded-pill w-50 py-2">Create an Account</button>
+            <p class="mt-2 mb-2">Already have an account?</p>
+            <a href="/user/sign-in" class="btn btn-outline-primary rounded-pill w-50 py-2 custom-hover">Sign In</a>
+          </div>
+
+<%- include('./partials/auth/_ui2') %> 
+          <!-- singup form -->
+          <h2 class="text-primary text-center mb-1">Create Account</h2>
+          <form action="/" method="post" id="signUpForm">
+              <!-- input -fileds -->
+              <div class="">
+                  <div class="input-container ic1">
+                      <input id="name" class="input" type="text" placeholder=" " name="name" pattern="^[a-zA-Z ]+$" title="Use only Letters[a-zA-Z]" required value="<%=user.name%>" />
+                      <div class="cut"></div>
+                      <label for="name" class="placeholder">*Name:</label>
+                  </div>
+              </div>
+              <div class="">
+                  <div class="input-container ic1">
+                      <input id="email" class="input" type="email" placeholder=" " pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" title="Enter a valid email!&#60;example@email.com&#62;" name="email" minlength="3"  required value="<%=user.email%>" />
+                      <div class="cut"></div>
+                      <label for="email" class="placeholder">*Email:</label>
+                  </div>
+              </div>
+              <div class="">
+                  <div class="input-container ic1">
+                      <input id="username" class="input" minlength="3" type="text" placeholder=" " title="username should not contains any white-spaces!" pattern="^\S*$" name="username" required value="<%=user.username%>" />
+                      <div class="cut cut-lg"></div>
+                      <label for="username" class="placeholder">*Username:</label>
+                  </div>
+              </div>
+              <div class="">
+                  <div class="input-container ic1">
+                      <input id="password" class="input" minlength="4" type="password" placeholder=" " name="password" required value="<%=user.passsword%>" />
+                      <div class="cut cut-lg"></div>
+                      <label for="password" class="placeholder">*Password:</label>
+                  </div>
+              </div>
+
+
+
+              <div class="text-center mt-2">
+                  <button type="submit" id="formSubmitBtn" class="btn btn-primary rounded px-5 text-light btn-lg py-2">Create</button>
+              </div>
+          </form>
+
+<%- include('./partials/auth/_modal') %> 
+<script>
+    // form submit handler
+    formSubmitBtn.addEventListener('click',e=>{
+        e.preventDefault()
+        formSubmitBtn.disabled=true
+        formSubmitBtn.innerHTML=`<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Creating...`
+        formSubmitBtn.classList.add('disabled')
+        signUpForm.submit()
+
+    
+    })
+</script>
+

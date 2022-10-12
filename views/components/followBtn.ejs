@@ -1,0 +1,9 @@
+    <% if (profileUser.followers.length && (profileUser.followers.findIndex(doc => doc.follower.id == user.id)) != -1) { %>
+        <button class="follow-btn active" data-user-id="<%=profileUser._id%>">
+            <span class="follow-text"> Following</span>
+        </button>
+        <% } else { %>
+            <button class="follow-btn" data-user-id="<%=profileUser._id%>">
+                <span class="follow-text"> Follow</span>
+            </button>
+     <% } %> 

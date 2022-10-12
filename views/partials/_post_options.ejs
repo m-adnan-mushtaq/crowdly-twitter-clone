@@ -1,0 +1,26 @@
+<div class="dropdown">
+    <button class="mx-2 bg-transparent text-dark-grey border-0 " type="button" id="dropdownMenuActions" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+</button>
+<ul  data-offset="0" class="dropdown-menu post-actions-dropdown dropdown-menu-center shadow-sm px-2 text-dark-grey" aria-labelledby="dropdownMenuActions">
+    <li><h6 class="dropdown-header">Post Actions</h6></li>
+ <li class="drop-down-item">
+    <% if (pinned =='true') { %>
+        <button class="btn border-0 unpin-btn"  data-bs-toggle="modal" data-bs-target="#UnPinnPostModal">
+            <i class="fa fa-ban" aria-hidden="true"></i> Unpin Tweet
+        </button>
+    <% } else { %>
+        <button class="btn border-0 pin-btn"  data-bs-toggle="modal" data-bs-target="#pinnPostModal">
+            <i class="fa fa-thumb-tack pin-btn" aria-hidden="true"></i> Pin to Profile
+        </button>
+    <% } %> 
+
+    
+</li>
+ <li class="drop-down-item">
+    <button class="btn border-0 delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete Tweet
+    </button>
+</li>
+</ul>
+</div>

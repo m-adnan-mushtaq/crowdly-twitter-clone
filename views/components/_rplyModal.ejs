@@ -1,0 +1,32 @@
+<!-- Modal -->
+<div class="modal fade" id="rplyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down  modal-dialog-scrollable animate__animated animate__slideInDown animate__faster ">
+      <form class="modal-content" action="/posts/reply" method="post">
+        <div class="modal-header">
+            <div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class=" post-modal-wrapper ps-1 my-1" style="min-height:100px ;">
+            </div>
+            <div class="form-box d-flex border-top">
+                <div class="img-wrapper">
+                    <img src="<%=user.profilePic%>" referrerpolicy="no-referrer" class="rounded-circle" width="60" height="60" alt="<%=user.username%> ">
+                </div>
+                <div class="flex-fill">
+                    <textarea required minlength="5" class="retweet-textarea" name="reply" id="reply"
+                placeholder="Add your reply..." autofocus></textarea>
+                </div>
+                
+
+            </div>
+            <input type="hidden" name="postId" id="rplyTargetPostId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-extra-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary text-light ">Add Reply</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,28 @@
+<%- contentFor('layoutButton') %>
+<form action="/api/notifications?_method=PUT" method="post">
+
+    <button  title="mark notification as read" id="markBtn" class="d-none menu-icon-link custom-tooltip me-4 markBtn bg-transparent border-0" >
+        <svg width="20" height="20" id="Capa_1" enable-background="new 0 0 460.702 460.702" height="512" viewBox="0 0 460.702 460.702" width="512" xmlns="http://www.w3.org/2000/svg"><g><path d="m316.608 121.805c-8.937-9.037-23.499-9.151-32.576-.254l-170.268 168.282-74.017-76.626c-8.828-9.201-23.443-9.503-32.643-.675-9.201 8.828-9.503 23.443-.675 32.643.04.041.079.082.119.123l90.248 93.526c4.319 4.406 10.222 6.901 16.392 6.926h.254c6.053-.019 11.857-2.415 16.161-6.672l186.797-184.697c9.025-8.95 9.117-23.511.208-32.576z"/><path d="m235.318 338.824c4.308 4.395 10.192 6.888 16.346 6.926h.254c6.053-.019 11.857-2.415 16.161-6.672l186.798-184.697c8.467-9.534 7.602-24.126-1.931-32.593-8.643-7.676-21.63-7.777-30.391-.237l-170.199 168.282-6.072-6.303c-8.827-9.201-23.442-9.504-32.643-.676-9.201 8.827-9.504 23.442-.676 32.643.04.042.08.083.12.124z"/></g></svg>
+        <span class="tooltiptext">Mark as Read</span>
+    </button>
+</form>
+
+<%- contentFor('body') %>
+
+<div id="notificationsWrapper" class="px-2">
+    
+</div>
+
+
+<!-- sidebar -->
+<%- contentFor('sidebar') %>
+<div class="d-flex h-75 justify-content-center align-items-start flex-column px-3">
+    <div class="px-4">
+        <img src="/assets/notification.gif" alt="notification icon" class="img-fluid">
+    </div>
+
+</div>
+
+<%- contentFor('extraScripts') %>
+<script  src="/js/notifications.js"></script>
+

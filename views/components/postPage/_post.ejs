@@ -1,0 +1,43 @@
+<div class="post-wrapper post-border <%=locals.mainPost?'mainPost':''%>"  data-post-id="<%=post._id%>">
+    <% if (post.replyTo && post.replyTo.author) { %>
+            <p class="mt-2 ps-2">
+                <i>
+    
+                    Replying to <a class="link-primary text-decoration-none" href="#">@<%=post.replyTo.author.username%></a></a>
+                </i>
+            </p>
+    <% } %>
+    <div class="p-2">
+        <div class="post-header d-flex align-items-center">
+            <div class="img-wrapper d-flex flex-fill align-items-center">
+                <div class="align-middle">
+                    <a href="/user/<%=post.author.username%>">
+                         <img referrerpolicy="no-referrer" loading="lazy" src="<%=post.author.profilePic%>" class="img-rounded rounded-circle align-middle" width="50" height="50" alt="profile pic">
+                     </a>
+                </div>
+                <div class="ms-2">
+                    <div class="m-0">
+                        <a href="/user/<%=post.author.username%>" class="text-dark-grey ms-1 mb-0 fw-bold"><%=post.author.name%></a>
+                    </div>
+                    <small class="text-muted">@<%=post.author.username%></small>
+    
+                </div>
+            </div>
+            <small class="text-muted">
+                 <%=post.uploadedAt%> 
+            </small>
+           
+            <% if (post.author.id==user.id) { %> 
+                <%-include('../../partials/_post_options',{pinned:String(post.pinned)}) %> 
+
+            <% } %>
+        </div>
+        <div class="post-content  p-2 border-top">
+            <p class="content">
+              <%=post.content%> 
+            </p>
+        </div>
+        <!-- post actions -->
+       <%-include('../../partials/_post_actions',{post}) %> 
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<%-include('./components/_search') %> 
+<section class="tabs-section border-bottom">
+    <a class="tab  <%=(activeTab=='latest')?'active':'' %>  " href="/search?q=<%=locals.query%>">
+        Latest
+    </a>
+    <a class="tab  <%=(activeTab=='people')?'active':'' %>  " href="/search/people?q=<%=locals.query%>">
+        People
+    </a>
+    <a class="tab  <%=(activeTab=='photos')?'active':'' %>  " href="/search?q=<%=locals.query%>&type=media">
+        Photos
+    </a>
+</section>
+
+<!-- iteratre over posts -->
+<% if (foundPosts.length===0) { %>
+  <h5 class="text-muted my-2 ps-2">Nothing to show! Make a tweet!</h5>
+<% }else {%>
+  <% foundPosts.forEach(post => { %>
+      <%-include('./components/_post',{post}) %> 
+  <% }) %>
+
+<% } %>     
+
+
+<!-- search filters -->
+<%- contentFor('sidebar') %>
+<div class="p-2 ms-2 my-4 rounded  border" style="background-color:#fafafac4 ;">
+    <p class="my-2 fw-bold" style="font-size:1.4rem ;">Search Filters</p>
+    <h5>People</h5>
+    <form method="get" id="searchFilterForm" action="/search">
+        <input type="hidden" name="q" id="hiddenQuery" value="<%=locals.query%>">
+        <% if (locals.type) { %>
+          <input type="hidden" name="type" value="<%=locals.type%>">
+         
+        <% } %>
+        <div class="d-flex my-2">
+            <div class="flex-fill">
+                <label class="form-check-label" for="flexSwitchCheckChecked">From Anyone</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="all" type="radio" name="pf" id="flexSwitchCheckChecked" <%=locals.pf!='follower' && 'checked' %> >
+            </div>
+    
+        </div>
+        <div class="d-flex my-2">
+            <div class="flex-fill">
+                <label class="form-check-label" for="flexSwitchCheckChecked">From You Follow</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" value="follower" type="radio" name="pf" id="flexSwitchCheckChecked" <%=locals.pf =='follower' && 'checked' %>>
+            </div>
+    
+        </div>
+        <h5 class="mt-4">Dates</h5>
+        
+        <p class="my-2">From</p>
+        <input type="hidden" id="exampleDate" name="start">
+        <p class="my-2">To</p>
+        <input type="hidden" id="exampleDate1" name="end">
+
+        <div class="form-actions d-flex justify-content-between align-items-center mx-5 my-2">
+            <button type="reset" class="btn btn-extra-light border shadow  btn">Clear</button>
+            <button type="submit" class="btn btn-dark  shadow">Apply</button>
+        </div>
+    </form>
+    
+
+
+</div>
+
+
+<%- contentFor('extraScripts') %>
+<script src="/js/jquery.date-dropdowns.min.js"></script>
+<script defer>
+    $(function () {
+    $("#exampleDate").dateDropdowns({
+        submitFormat: "mm/dd/yyyy",
+        daySuffixes: false,
+    });
+    $("#exampleDate1").dateDropdowns({
+        submitFormat: "mm/dd/yyyy",
+        daySuffixes: false,
+
+    });
+})
+
+</script>

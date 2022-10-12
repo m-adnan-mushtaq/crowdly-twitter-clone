@@ -1,0 +1,46 @@
+<%- include('./partials/auth/_ui') %> 
+
+
+          <h1
+            class="main-title display-4 fw-bold text-primary animate__animated animate__rotateInDownLeft animate__faster animate__delay-1s">
+            Here to satisfy the crowd</h1>
+          <h5 class="">For the millions watching you!</h5>
+          <div class="mt-5 w-100">
+            <a href="/user/google" class="btn-scale sm-btns btn btn-danger rounded-pill w-50 py-2">
+              <i class="fa fa-google-plus" aria-hidden="true"></i>&nbsp;
+              Continue with Google</a>
+            <p class="mb-2">or</p>
+            <button class="btn-scale btn text-light sm-btns btn-primary  modal-show-btn rounded-pill w-50 py-2">Continue with Crowdly Account</button>
+            <p class="mt-2 mb-2">Not have an account Yet?</p>
+            <a href="/" class="btn btn-outline-primary rounded-pill w-50 py-2 custom-hover">Sign Up</a>
+          </div>
+
+<%- include('./partials/auth/_ui2') %> 
+          <!-- singup form -->
+          <h2 class="text-primary text-center mb-1">Welcome Back</h2>
+          <form action="/user/sign-in" method="post">
+              <!-- input -fileds -->
+              <div class="">
+                  <div class="input-container ic1">
+                      <input id="email" class="input"  required type="text" placeholder=" " name="email" value="<%=user.email%>"/>
+                      <div class="cut" style="min-width:130px "></div>
+                      <label for="email" class="placeholder">*Email or Username:</label>
+                  </div>
+              </div>
+              <div class="">
+                  <div class="input-container ic1">
+                      <input minlength="4" id="password" class="input" required type="password" placeholder=" " name="password" value="<%=user.password%>"/>
+                      <div class="cut cut-lg"></div>
+                      <label for="password" class="placeholder">*Password:</label>
+                  </div>
+              </div>
+
+
+
+              <div class="text-center mt-2">
+                  <button class="btn btn-primary rounded px-5 text-light btn-lg py-2">Continue</button>
+              </div>
+          </form>
+
+<%- include('./partials/auth/_modal') %> 
+

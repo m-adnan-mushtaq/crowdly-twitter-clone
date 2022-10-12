@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center px-2 my-1">
+    <a href="/user/<%=fuser.username%>" class="text-decoration-none text-dark-grey">
+        <div class="img-wrapper">
+            <img width="50" height="50" referrerpolicy="no-referrer" src="<%=fuser.profilePic%>" alt="user" class="rounded-circle">
+        </div>
+        </a>
+        
+    <div class="ms-2 flex-fill">
+        <p class="mb-0"><%=fuser.name%></p>
+        <small> @<%=fuser.username%></small>
+    </div>
+    <div class="profile-page-actions">
+        <% if (fuser.id!=user.id) { %>
+            <p><%=  %> </p>
+            <% if (fuser.followers.length && (fuser.followers.findIndex(doc => doc.follower == user.id)) != -1) { %>
+                <button class="follow-btn active" data-user-id="<%=fuser._id%>">
+                    <span class="follow-text"> Following</span>
+                </button>
+                <% } else { %>
+                    <button class="follow-btn" data-user-id="<%=fuser._id%>">
+                        <span class="follow-text"> Follow</span>
+                    </button>
+             <% } %> 
+        <% } %>
+    </div>
+</div>

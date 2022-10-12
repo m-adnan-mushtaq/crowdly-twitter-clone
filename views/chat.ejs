@@ -1,0 +1,84 @@
+<div class="chat-container  d-flex flex-column" style="height: calc(100% - 72px);">
+    <div class="chat-title pb-2 border-bottom d-flex align-items-center">
+        <div class="chat-title-icon d-flex align-items-center ">
+            <div class="img-row">
+                <%- include('./components/messages/createChatIcon',{users:chat.users,user,limit:3}) %>    
+            </div>
+            <% if (chat.users.length-3>0) { %>
+                <p class="left-row fs-5 fw-bold left-badge  mb-0">
+                    +<%=chat.users.length-3 %> 
+                </p>
+            <% } %>
+            
+        </div>
+        <div class="ms-2 flex-fill" >
+            <div style="max-width:20ch;">
+                <h5 class="chat-title chat-users-list" >
+                    <% if (chat.title) { %>
+                        <%= chat.title %> 
+                    <% } else { %>
+                        <%= chat.users.reduce((prev,current)=>(prev.username || prev)+', '+ current.username) %> 
+                        <% } %> 
+                </h5>
+            </div>
+            
+        </div>
+        <div class="dropdown">
+            <button class="btn bg-transparent border-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu w-100 border-0 shadow p-0 title-dropdown"  >
+                <form action="/messages/<%=chat._id%>?_method=PUT" method="post"  >
+                <div class="input-group">
+                    <div class="form-floating">
+                        <input name="title" type="text" required min="3" value="<%=chat.title||''%>" class="form-control" id="floatingInput" placeholder="type new title..">
+                        <label for="floatingInput">Chat Title:</label>
+                     </div>
+                     <button class="btn btn-primary text-light" type="submit" id="updateTitleBtn">Update</button>
+                </div>
+            </form>
+            </ul>
+        
+        </div>
+    </div>    
+
+
+    <div class="messages-wrapper message-scrollbar" id="messagesWrapper" style="overflow-y: auto;overflow-x: hidden;">
+       
+        <ul class="chatMessages"  data-chat-room="<%=chat.id%>">
+           
+        </ul>
+        <div class="empty-chat-indicator text-center ">
+            <div class="w-50 mx-auto " >
+                <img src="/assets/bubble-chat.gif" class="img-fluid" alt="no messages yet">
+            </div>
+            <h5 class="text-dark-grey">No Messages Yet, Say Hi to your friend!</h5>
+        </div>
+    </div>
+    <div class="send-message-box mt-auto mb-2 pt-2 ms-1 border-top">
+                <form action="" id="messageForm">
+                    <div class="d-flex">
+                        <input type="hidden" name="senderId" id="senderIdInput" value="<%=user.id%>">
+                        <input type="hidden" name="chatId" id="chatIdInput" value="<%=chat.id%>">
+                        <input type="text" id="messageInput" title="enter your message" placeholder="type message..." name="content" class="message-input flex-fill">
+                        <button type="submit" title="send message" class="btn bg-transparent border-0 text-primary fw-bold fs-4 " >
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    
+                </form>
+               
+
+    </div>
+</div>  
+<%- contentFor('sidebar') %>
+<h5 class="fw-bold  my-3">Chat Users</h5>
+<div id="usersListWrapper" class="usersListWrapper me-2 rounded " >
+   
+</div>
+
+<%- contentFor('extraScripts') %>
+<script>
+    const currentChat=  '<%-JSON.stringify(chat)%>'            
+ </script>
+<script src="/js/chat.js"></script>

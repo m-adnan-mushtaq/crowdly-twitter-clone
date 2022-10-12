@@ -1,0 +1,7 @@
+
+
+<% for( let i = 0; i < users.length && i<limit; i++ ) { %>
+    <% if (!(users[i].username == user.username)) { %>
+        <img src="<%=users[i].profilePic%>" loading="lazy" alt="user-img" width="50" height="50">
+    <% } %>
+<% } %>

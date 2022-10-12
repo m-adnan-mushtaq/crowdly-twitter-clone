@@ -1,0 +1,8 @@
+
+<% if (allUsers.length==0) { %>
+    <h5 class="p-2 text-dark-grey my-2">No User found! :)</h5>
+<% } else {%>
+    <% allUsers.forEach(userDoc => { %>
+     <%-include('./components/user',{fuser:userDoc}) %> 
+    <% }) %>
+<% } %> 

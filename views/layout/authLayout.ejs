@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon links -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
+
+    <!-- styling css files -->
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/css/main.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- fontawesome file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- font css -->
+    <link href="http://fonts.cdnfonts.com/css/modern-no-20" rel="stylesheet">
+    <!-- animate css file -->
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <!-- toast message libray -->
+    <link rel="stylesheet" href="/css/toastr.min.css">
+
+    <title>Crowdly / <%= locals.title  %> </title>
+</head>
+
+<body  >
+      <div id="loader" class="loader-wrapper bg-white ">
+           <div class="loader">
+            <img src="/assets/crowdly-logo.svg" alt="Crowdly">
+          </div>
+      </div>
+
+
+      <!-- content will go here -->
+      <%- body %>
+
+
+<!-- </main> -->
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loader.style.display = 'none'
+
+})
+</script>
+<!-- swup js  -->
+<script src="/js/jQuery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<!-- toast js -->
+<script src="/js/toastr.min.js"></script>
+<!-- toast script -->
+<script defer>
+  toastr.options = {
+"closeButton": true,
+"debug": false,
+"newestOnTop": true,
+"progressBar": true,
+"positionClass": "toast-top-right",
+"preventDuplicates": true,
+"onclick": null,
+"showDuration": "300",
+"hideDuration": "1000",
+"timeOut": "5000",
+"extendedTimeOut": "1000",
+"showEasing": "swing",
+"hideEasing": "linear",
+"showMethod": "fadeIn",
+"hideMethod": "fadeOut"
+}
+</script>
+<!-- modal js -->
+<script defer>
+
+  // get modal elm
+  const modalElm=document.getElementById('exampleModal')
+  if (modalElm) {
+    const myModal = new bootstrap.Modal(modalElm, {
+      backDrop:true
+    })
+
+    // modal opener button
+    document.querySelector('.modal-show-btn').addEventListener('click',()=>{
+      myModal.show()
+    })
+    // or keep on eye is modal is shown or not
+    let isShowModal=document.querySelector('.modal-footer').dataset.isShow
+    if (isShowModal && isShowModal=='true') {
+      myModal.show()
+      
+    }
+  }
+
+
+</script>
+<!-- toast message -->
+
+<%- include('./_messages') %> 
+</html>

@@ -1,0 +1,24 @@
+<%-include('./postPage/_post',{post}) %>  
+
+<!-- show post highlited whose reply was given and that is the main post -->
+<% if(post.replyTo && post.replyTo._id) {%> 
+    <%-include('./postPage/_post',
+    {
+        post:post.replyTo,
+        mainPost:true
+    }
+    ) %>  
+<% } %> 
+<!-- no show if any replies found -->
+<!-- if post replies found then return it -->
+<% if (post.replies.length) { %>
+
+    <% post.replies.forEach(replyPost => { %>
+        <!-- check if reply post was populated! -->
+        <% if (replyPost._id) { %>
+            <!-- show reply post one by one -->
+            <%-include('./postPage/_post',{post:replyPost}) %>  
+        <% } %> 
+
+    <% }) %>
+<% } %> 

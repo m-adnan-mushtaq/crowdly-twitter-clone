@@ -1,0 +1,22 @@
+
+<% if (info_msg!="") { %>
+    <script>
+       toastr["info"]("<%=info_msg%>","Alright!")
+    </script>
+<% } %>
+<% if (error!="") { %>
+    <script>
+         toastr["error"]('<%=error%>', "Oops!") 
+    </script>
+<% } %>
+<% if (success_msg!="") { %>
+    <script>
+        toastr["success"]("<%=success_msg%>","Very Well!")
+    </script>
+<% } %>
+
+<% if (err_msg!="") { %>
+    <script>
+        toastr["warning"]("<%=err_msg%>","Caution!")
+    </script>
+<% } %>

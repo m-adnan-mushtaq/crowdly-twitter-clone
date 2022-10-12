@@ -1,0 +1,41 @@
+<div class="modal fade" id="messageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-scrollable  modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-flex  align-items-center mx-2 w-100">
+                    <div class="me-3">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h5 class="modal-title flex-fill fw-bold" id="messageModalLabel">Create New Chat</h5>
+
+                    <button class="btn btn-black" id="createGroupChatButton" disabled>
+                        Next
+                    </button>
+
+                </div>
+            </div>
+            <div class="modal-body message-modal">
+
+                <div class="search-box">
+                    <div class="icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <input type="search" name="query" id="groupQueryInput" placeholder="search people">
+                </div>
+                <div class="chat-members border-bottom my-2"></div>
+                <div class="search-results">
+
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="clear-fix">
+                    <div class="float-end">
+                        <p class="fs-6">Find your friends by their name!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
