@@ -38,7 +38,7 @@ router.route('/')
                 </div>
                 <div style="padding:1em;font-size: 2rem;">
                 <p style="font-size:2rem;">Click below link to <i><b>Verify</b></i> your email!</p>
-                <a href="http://localhost:3000/user/checkVerification/${token}" style="margin:1em 0;text-decoration: none;font-size:1.6rem;background-color: #1da1f2;color:#fff;border-radius: 10px;outline: none;border:0;padding:.5em 1em;cursor: pointer;">Verify Me </a>
+                <a href="https://crowdly-twitter-clone.onrender.com/user/checkVerification/${token}" style="margin:1em 0;text-decoration: none;font-size:1.6rem;background-color: #1da1f2;color:#fff;border-radius: 10px;outline: none;border:0;padding:.5em 1em;cursor: pointer;">Verify Me </a>
             </div>
                 <div style="background:#303030;font-size:1rem;padding:1em 2em;color:#fff;">
                     <p style="font-size:1.5rem;color:##ff5151;"> ⚠ Link will be expired after 1 Hour!</p>
